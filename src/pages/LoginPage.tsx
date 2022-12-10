@@ -1,7 +1,9 @@
+import LoginForm from '../components/LoginForm';
+
 const MainPage = () => {
   return (
     <>
-      <h1>LoginPage</h1>
+      <LoginForm />
     </>
   );
 };

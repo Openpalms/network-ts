@@ -8,7 +8,7 @@ const Navbar = () => {
         <div className="w-[50%] h-[100%] flex justify-around items-end pt-3 text-center font-bold transition-all">
           <Link
             to={'/'}
-            className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%] "
+            className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
           >
             Main
           </Link>
