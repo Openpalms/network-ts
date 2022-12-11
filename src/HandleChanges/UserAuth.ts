@@ -81,3 +81,37 @@ export const IsUserLogged = () => {
     currentUser,
   };
 };
+export const SetUserProfile = () => {
+  const [fullName, setFullName] = useState('');
+  const [age, setAge] = useState('');
+  const [status, setStatus] = useState('');
+
+  const SubmitLoginForm = (fullname: string, age: string, status: string) => {
+    const userInfo = {
+      uid: auth.currentUser?.uid,
+      fullname,
+      age,
+      status,
+    };
+    if (fullName.length >= 5 && age.length >= 1 && status !== '') {
+      HandleUserActions.addUserInfo(userInfo);
+    }
+    clearInput();
+  };
+
+  const clearInput = () => {
+    setFullName('');
+    setAge('');
+    setStatus('');
+  };
+
+  return {
+    SubmitLoginForm,
+    setFullName,
+    setAge,
+    setStatus,
+    fullName,
+    age,
+    status,
+  };
+};

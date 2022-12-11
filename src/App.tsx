@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { IsUserLogged } from './HandleChanges/UserAuth';
-import Settings from './components/Settings';
+import Settings from './pages/Settings';
 function App() {
   const { currentUser } = IsUserLogged();
   return (

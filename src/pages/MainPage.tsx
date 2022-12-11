@@ -1,6 +1,25 @@
+import { useState, useEffect } from 'react';
+import { onValue, ref } from 'firebase/database';
+import { bd, auth } from '../api/config';
 import Posts from '../components/Posts';
+import { IUser } from '../Types/User';
 
 const MainPage = () => {
+  const [user, setUser] = useState({
+    fullname: 'Setup your profile',
+    age: 'go to settings!',
+  } as IUser);
+  useEffect(() => {
+    const starCountRef = ref(bd, auth.currentUser?.uid);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      console.log(auth.currentUser?.uid);
+      if (data !== null) {
+        setUser(data);
+      }
+    });
+  }, []);
+
   return (
     <>
       <div className="flex justify-center ">
@@ -8,23 +27,24 @@ const MainPage = () => {
           <div className="flex flex-col justify-start w-48 m-10 ml-16 text-white">
             <img
               src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
-              className="w-40 h-40 rounded-md"
+              className="w-[170px] h-40 rounded-md"
               alt="avatar"
             />
-            <p className="mt-10">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti
-              harum corporis praesentium vel tempore. In debitis et quod quos,
-              consequuntur numquam iure id doloribus repudiandae veniam nemo
-              voluptates minus est.
-            </p>
+            <div className="mt-10 flex">
+              <button className="uppercase mr-1 p-2 bg-[#13a7ab] rounded ">
+                {' '}
+                message
+              </button>
+              <button className="uppercase mr-1 p-2 bg-[#13a7ab] rounded ">
+                friends{' '}
+              </button>
+            </div>
           </div>
           <div className="flex flex-col justify-start w-[50%] p-10 text-white ">
-            <p className="font-bold text-2xl ">Daniil galochkin</p>
-            <p className="pt-5 text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Exercitationem nobis quae atque blanditiis officiis, ad laborum
-              expedita consectetur. Facere, vero.{' '}
+            <p className="font-bold text-2xl ">
+              {user && user.fullname}, {user && user.age}
             </p>
+            <p className="pt-5 text-sm">{user && user.status}</p>
             <p className="pt-5 text-lg">posts:</p>
             <Posts />
             <button className="border bg-[#13a7ab]">add post</button>

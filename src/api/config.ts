@@ -12,6 +12,8 @@ const firebaseConfig = {
   storageBucket: 'social-network-c71bd.appspot.com',
   messagingSenderId: '687079913632',
   appId: '1:687079913632:web:2fef38f6922be444fd71c5',
+  databaseURL:
+    'https://social-network-c71bd-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
 const app = initializeApp(firebaseConfig);

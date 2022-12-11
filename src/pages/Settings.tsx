@@ -1,7 +1,16 @@
 import { useState } from 'react';
-
+import { SetUserProfile } from '../HandleChanges/UserAuth';
 const Settings = () => {
   const [progress, setProgress] = useState('h-[10%]');
+  const {
+    setFullName,
+    setStatus,
+    setAge,
+    age,
+    fullName,
+    status,
+    SubmitLoginForm,
+  } = SetUserProfile();
   return (
     <div className="flex justify-center ">
       <div className="  bg-[#50597b]  rounded-xl flex justify-around">
@@ -19,22 +28,32 @@ const Settings = () => {
             className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg  "
             placeholder="Enter your fullname"
             onFocus={() => setProgress('h-[30%]')}
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <input
             className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg"
             placeholder="enter your age"
             onFocus={() => setProgress('h-[50%]')}
+            value={age}
+            onChange={(e) => setAge(e.target.value)}
+            required={true}
           />
           <textarea
             className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg resize-none"
             placeholder="status"
             onFocus={() => setProgress('h-[75%]')}
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            required
           />
           <button
             className="mt-10 bg-[#13a7ab] h-10 rounded uppercase hover:shadow-2xl hover:bg-[#17c0c5] transition-all"
             onClick={(e) => {
               e.preventDefault();
               setProgress('h-[100%]');
+              SubmitLoginForm(fullName, age, status);
             }}
           >
             save

@@ -1,8 +1,10 @@
 import { bd, storage, auth } from './config';
+import { ref, remove, set, update } from 'firebase/database';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { IUser } from '../Types/User';
 
 export const HandleUserActions = {
   CreateNewUser(auth: any, email: string, password: string) {
@@ -18,9 +20,9 @@ export const HandleUserActions = {
 
   loginUser(auth: any, email: string, password: string) {
     signInWithEmailAndPassword(auth, email, password)
-      .then(async (userCredential) => {
+      .then((userCredential) => {
         const user = userCredential.user;
-        return await user;
+        return user;
       })
       .catch(async (er) => {
         const errorCode = er.code;
@@ -30,5 +32,9 @@ export const HandleUserActions = {
   },
   logoutUser() {
     auth.signOut();
+  },
+
+  addUserInfo(body: IUser) {
+    set(ref(bd, `${body.uid}/`), { ...body });
   },
 };
