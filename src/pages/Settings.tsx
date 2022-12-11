@@ -30,7 +30,6 @@ const Settings = () => {
             onFocus={() => setProgress('h-[30%]')}
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            required
           />
           <input
             className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg"
@@ -38,7 +37,6 @@ const Settings = () => {
             onFocus={() => setProgress('h-[50%]')}
             value={age}
             onChange={(e) => setAge(e.target.value)}
-            required={true}
           />
           <textarea
             className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg resize-none"
@@ -46,7 +44,6 @@ const Settings = () => {
             onFocus={() => setProgress('h-[75%]')}
             value={status}
             onChange={(e) => setStatus(e.target.value)}
-            required
           />
           <button
             className="mt-10 bg-[#13a7ab] h-10 rounded uppercase hover:shadow-2xl hover:bg-[#17c0c5] transition-all"

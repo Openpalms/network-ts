@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import { IsUserLogged } from './HandleChanges/UserAuth';
 import Settings from './pages/Settings';
+import UserPages from './pages/UsersPages';
 function App() {
   const { currentUser } = IsUserLogged();
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="" element={currentUser ? <MainPage /> : <LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/users" element={<UserPages />} />
         </Routes>
       </div>
     </div>
