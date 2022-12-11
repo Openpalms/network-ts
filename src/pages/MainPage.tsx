@@ -1,4 +1,5 @@
 import Posts from '../components/Posts';
+
 const MainPage = () => {
   return (
     <>

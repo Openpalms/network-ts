@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-
+import { HandleUserActions } from '../api/Socials';
 const Navbar = () => {
   return (
     <>
@@ -21,6 +21,7 @@ const Navbar = () => {
           <Link
             to={''}
             className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
+            onClick={HandleUserActions.logoutUser}
           >
             Logout
           </Link>

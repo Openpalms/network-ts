@@ -1,7 +1,15 @@
+import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <div className=" bg-[#50597b]  h-[500px] flex flex-col items-center rounded-md justify-around text-white">
-      <p>Link</p>
+      <Link
+        to={'/settings'}
+        className="hover:text-[#13a7ab] 
+        hover:-mb-[4px]
+        hover:border-b-4 border-[#13a7ab]	  transition-all "
+      >
+        settings
+      </Link>
       <p>Link</p>
       <p>Link</p>
       <p>Link</p>
