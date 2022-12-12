@@ -7,6 +7,7 @@ import Sidebar from './components/Sidebar';
 import { IsUserLogged } from './HandleChanges/UserAuth';
 import Settings from './pages/Settings';
 import UserPages from './pages/UsersPages';
+import RightBar from './components/RightBar';
 function App() {
   const { currentUser } = IsUserLogged();
   return (
@@ -18,13 +19,16 @@ function App() {
         <Sidebar />
       </div>
       <div className="col-start-3 mr-5">
-        <Sidebar />
+        <Routes>
+          <Route path={`/`} element={<RightBar />} />
+          <Route path={`/:id`} element={<RightBar />} />
+        </Routes>
       </div>
       <div className=" col-start-2 row-start-2 w-[100%]">
         <Routes>
           <Route path="" element={currentUser ? <MainPage /> : <LoginPage />} />
-          <Route path="/login" element={<LoginPage />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path={`/:id`} element={<MainPage />} />
           <Route path="/users" element={<UserPages />} />
         </Routes>
       </div>

@@ -1,10 +1,11 @@
 import search from '../assets/images/search.gif';
 import UserCard from '../components/UserCard';
-import scroll from '../assets/images/scroll.png';
+import scroll from '../assets/images/scroll.gif';
 import { useState, useEffect } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { bd } from '../api/config';
 import { IUser } from '../Types/User';
+import { auth } from '../api/config';
 const UserPages = () => {
   const [query, setQuery] = useState('');
   const [users, setUsers] = useState([] as any);
@@ -36,14 +37,16 @@ const UserPages = () => {
           />
         </label>
       </div>
-      <p className="my-5 mx-auto w-10 h-10 ">
-        <img src={scroll} />
+      <p className="my-5 mx-auto w-14 h-14 ">
+        <img src={scroll} alt="" />
       </p>
-      <div className="flex flex-col overflow-x-scroll h-[20rem] p-5 border mx-5 bg-[#1f253d] rounded">
+      <div className="flex flex-col overflow-x-scroll h-[20rem] p-5 border mx-5 bg-[#1f253d] rounded ">
         {users &&
           users
-            .filter((user: IUser) =>
-              user.fullname.toLowerCase().includes(query)
+            .filter(
+              (user: IUser) =>
+                user.fullname.toLowerCase().includes(query) &&
+                user.uid !== auth.currentUser?.uid
             )
             .map((user: IUser) => <UserCard {...user} key={user.uid} />)}
       </div>

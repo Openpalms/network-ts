@@ -26,7 +26,7 @@ const LoginForm = () => {
         <div className={`form-wrapper ${isActive && 'is-active'}`}>
           <button
             type="button"
-            className="switcher switcher-login"
+            className="switcher switcher-login border"
             onClick={() => setIsActive(true)}
           >
             Login
@@ -36,11 +36,6 @@ const LoginForm = () => {
             <fieldset>
               <legend>Please, enter your email and password for login.</legend>
               <div className="input-block">
-                <button
-                  onClick={(e) => console.log(SubmitForm(e, email, password))}
-                >
-                  testSubmit
-                </button>
                 <label htmlFor="login-email">E-mail</label>
                 <input
                   id="login-email"

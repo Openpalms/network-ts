@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { auth } from '../api/config';
 import { onAuthStateChanged } from 'firebase/auth';
 import { HandleUserActions } from '../api/Socials';
+import { IPost } from '../Types/Post';
+import { nanoid } from 'nanoid';
+import dayjs from 'dayjs';
 
 export const AuthUser = () => {
   const [email, setEmail] = useState('');
@@ -113,5 +116,29 @@ export const SetUserProfile = () => {
     fullName,
     age,
     status,
+  };
+};
+
+export const AddNewPost = () => {
+  const [postBody, setPostBody] = useState('');
+
+  const CreateNewPost = (postBody: string) => {
+    const newPost: IPost = {
+      authorId: auth.currentUser?.uid,
+      postId: nanoid(),
+      postBody,
+      likesCount: 0,
+      createAt: dayjs().format('DD/MM/YYYY'),
+    };
+    if (postBody.length >= 1) {
+      HandleUserActions.addPost(newPost);
+    }
+    setPostBody('');
+  };
+
+  return {
+    CreateNewPost,
+    setPostBody,
+    postBody,
   };
 };

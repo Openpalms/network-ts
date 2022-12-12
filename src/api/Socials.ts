@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { IUser } from '../Types/User';
+import { IPost } from '../Types/Post';
 
 export const HandleUserActions = {
   CreateNewUser(auth: any, email: string, password: string) {
@@ -36,5 +37,8 @@ export const HandleUserActions = {
 
   addUserInfo(body: IUser) {
     set(ref(bd, `${body.uid}/`), { ...body });
+  },
+  addPost(post: IPost) {
+    update(ref(bd, `${post.authorId}/posts/${post.postId}`), { ...post });
   },
 };
