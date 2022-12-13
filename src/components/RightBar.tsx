@@ -2,6 +2,7 @@ import Posts from './Posts';
 import { AddNewPost } from '../HandleChanges/UserAuth';
 import { useState, useEffect } from 'react';
 import { onValue, ref } from 'firebase/database';
+import _ from 'lodash';
 import { bd, auth } from '../api/config';
 import { IPost } from '../Types/Post';
 import { useParams } from 'react-router-dom';
@@ -11,12 +12,23 @@ const RightBar = () => {
 
   const { CreateNewPost, setPostBody, postBody } = AddNewPost();
   const [posts, setPosts] = useState(null as unknown as IPost[]);
+
   useEffect(() => {
     const postref = ref(bd, uid + '/posts/');
     onValue(postref, (snapshot) => {
       const dbPosts = snapshot.val();
       if (dbPosts !== null) {
-        setPosts(Object.assign([], Object.values(dbPosts)));
+        const formatedData = Object.assign([], Object.values(dbPosts));
+        console.log(formatedData);
+        const ordered = _.orderBy(
+          formatedData,
+          function (item: any) {
+            return item.createAt;
+          },
+          ['desc']
+        );
+
+        setPosts(ordered);
       } else setPosts(null as unknown as IPost[]);
     });
   }, [uid]);

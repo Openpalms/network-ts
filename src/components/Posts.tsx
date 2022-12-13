@@ -15,11 +15,10 @@ const Posts = (props: IPost) => {
   const [time, setTime] = useState('');
   const [likes, setLikes] = useState([]);
   const [unlike, setUnlikes] = useState([]);
-
   useEffect(() => {
     const DayJs = dayjs().format('YYYY/MM/DD');
-    const createAt = dayjs(props.createAt).format('YYYY/MM/DD');
-    const difference = dayjs(createAt).from(DayJs);
+    const formatedDate = props.createAt.slice(0, 10);
+    const difference = dayjs(formatedDate).from(DayJs);
     setTime(difference);
   }, [props.createAt]);
   useEffect(() => {

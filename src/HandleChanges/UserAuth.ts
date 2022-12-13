@@ -128,7 +128,7 @@ export const AddNewPost = () => {
       postId: nanoid(),
       postBody,
       likesCount: [{ uid: '13231' }],
-      createAt: dayjs().format('YYYY/MM/DD'),
+      createAt: `${dayjs().format('YYYY/MM/DD/HH/mm/ss')}`,
     };
     if (postBody.length >= 1) {
       HandleUserActions.addPost(newPost);
