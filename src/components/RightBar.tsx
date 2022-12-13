@@ -48,18 +48,6 @@ const RightBar = () => {
             </button>
           </>
         )}
-        {/* <textarea
-          className="resize-none h-[12rem] text-[#13a7ab] p-2 bg-transparent border outline-none"
-          placeholder="Share something!"
-          value={postBody}
-          onChange={(e) => setPostBody(e.target.value)}
-        />
-        <button
-          className="border w-[50%] h-[50%] hover:bg-[#13a7ab] transition-all"
-          onClick={() => CreateNewPost(postBody)}
-        >
-          post
-        </button> */}
       </div>
     </div>
   );

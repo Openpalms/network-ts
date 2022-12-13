@@ -41,4 +41,12 @@ export const HandleUserActions = {
   addPost(post: IPost) {
     update(ref(bd, `${post.authorId}/posts/${post.postId}`), { ...post });
   },
+  like(post: IPost, uid: string | undefined) {
+    update(ref(bd, `${post.authorId}/posts/${post.postId}/likesCount/${uid}`), {
+      uid,
+    });
+  },
+  disLike(post: IPost, uid: string | undefined) {
+    remove(ref(bd, `${post.authorId}/posts/${post.postId}/likesCount/${uid}/`));
+  },
 };
