@@ -19,7 +19,6 @@ const RightBar = () => {
       const dbPosts = snapshot.val();
       if (dbPosts !== null) {
         const formatedData = Object.assign([], Object.values(dbPosts));
-        console.log(formatedData);
         const ordered = _.orderBy(
           formatedData,
           function (item: any) {

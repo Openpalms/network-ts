@@ -4,44 +4,71 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { HandleUserActions } from '../api/Socials';
 import { IPost } from '../Types/Post';
 import { nanoid } from 'nanoid';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import dayjs from 'dayjs';
 
 export const AuthUser = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordRepeated, setPasswordRepeated] = useState('');
-
+  const [error, setError] = useState('');
+  const [authName, setAuthName] = useState('');
+  const [authAge, setAuthAge] = useState('');
   const SubmitForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     email: string,
     password: string
   ) => {
     e.preventDefault();
-
-    HandleUserActions.CreateNewUser(auth, email, password);
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        HandleUserActions.addUserInfo({
+          uid: auth.currentUser?.uid,
+          fullname: authName,
+          age: authAge,
+          status: '',
+        });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setError('');
+        }, 5000);
+      });
     clearInput();
   };
 
   const clearInput = () => {
     setPassword('');
     setEmail('');
-    setPasswordRepeated('');
+    setAuthAge('');
+    setAuthName('');
   };
 
   return {
     SubmitForm,
     setEmail,
     setPassword,
-    setPasswordRepeated,
+    setAuthName,
+    setAuthAge,
     email,
     password,
-    passwordRepeated,
+    error,
+    authAge,
+    authName,
   };
 };
 
 export const LogUserIn = () => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
   const SubmitLoginForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -49,7 +76,20 @@ export const LogUserIn = () => {
     password: string
   ) => {
     e.preventDefault();
-    HandleUserActions.loginUser(auth, email, password);
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+      })
+      .catch((er) => {
+        const errorMessage = er.message;
+        setLoginError(errorMessage);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoginError('');
+        }, 5000);
+      });
+    // HandleUserActions.loginUser(auth, email, password);
     clearInput();
   };
 
@@ -62,9 +102,9 @@ export const LogUserIn = () => {
     SubmitLoginForm,
     setLoginEmail,
     setLoginPassword,
-
     loginEmail,
     loginPassword,
+    loginError,
   };
 };
 

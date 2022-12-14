@@ -16,9 +16,16 @@ const Sidebar = () => {
         hover:-mb-[4px]
         hover:border-b-4 border-[#13a7ab]	  transition-all "
       >
-        Find friends!
+        Find new friends
       </Link>
-      <p>Link</p>
+      <Link
+        to={'/users'}
+        className="hover:text-[#13a7ab] 
+        hover:-mb-[4px]
+        hover:border-b-4 border-[#13a7ab]	  transition-all "
+      >
+        Messages
+      </Link>
       <p>Link</p>
       <p>Link</p>
     </div>

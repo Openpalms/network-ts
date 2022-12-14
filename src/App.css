@@ -115,7 +115,15 @@
   transform-origin: top;
   border: 5px solid #13a7ab;
 }
-
+.formError {
+  overflow: hidden;
+  min-width: 260px;
+  margin-top: 50px;
+  padding: 30px 25px;
+  border-radius: 5px;
+  transform-origin: top;
+  border: 5px solid #c12358;
+}
 .form-login {
   animation: hideLogin 0.3s ease-out forwards;
 }

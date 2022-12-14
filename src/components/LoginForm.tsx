@@ -7,10 +7,13 @@ const LoginForm = () => {
     SubmitForm,
     setEmail,
     setPassword,
-    setPasswordRepeated,
+    setAuthAge,
+    setAuthName,
     email,
     password,
-    passwordRepeated,
+    authAge,
+    authName,
+    error,
   } = AuthUser();
   const {
     SubmitLoginForm,
@@ -18,6 +21,7 @@ const LoginForm = () => {
     setLoginPassword,
     loginEmail,
     loginPassword,
+    loginError,
   } = LogUserIn();
 
   return (
@@ -32,9 +36,8 @@ const LoginForm = () => {
             Login
             <span className="underline"></span>
           </button>
-          <form className="form form-login">
+          <form className={`${loginError ? 'formError' : 'form'} form-login`}>
             <fieldset>
-              <legend>Please, enter your email and password for login.</legend>
               <div className="input-block">
                 <label htmlFor="login-email">E-mail</label>
                 <input
@@ -75,12 +78,8 @@ const LoginForm = () => {
             Sign Up
             <span className="underline"></span>
           </button>
-          <form className="form form-signup">
+          <form className={`${error ? 'formError' : 'form'} form-signup`}>
             <fieldset>
-              <legend>
-                Please, enter your email, password and password confirmation for
-                sign up.
-              </legend>
               <div className="input-block">
                 <label htmlFor="signup-email">E-mail</label>
                 <input
@@ -89,6 +88,28 @@ const LoginForm = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="input-block">
+                <label htmlFor="signup-email">Full name</label>
+                <input
+                  id="signup-email"
+                  type="text"
+                  required
+                  placeholder="John Smith"
+                  value={authName}
+                  onChange={(e) => setAuthName(e.target.value)}
+                />
+              </div>
+              <div className="input-block">
+                <label htmlFor="signup-email">age</label>
+                <input
+                  id="signup-email"
+                  type="text"
+                  required
+                  placeholder="21"
+                  value={authAge}
+                  onChange={(e) => setAuthAge(e.target.value)}
                 />
               </div>
               <div className="input-block">
@@ -101,22 +122,9 @@ const LoginForm = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <div className="input-block">
-                <label htmlFor="signup-password-confirm">
-                  Confirm password
-                </label>
-                <input
-                  id="signup-password-confirm"
-                  type="password"
-                  required
-                  value={passwordRepeated}
-                  onChange={(e) => setPasswordRepeated(e.target.value)}
-                />
-              </div>
             </fieldset>
             <button
               type="submit"
-              disabled={password !== passwordRepeated}
               className="btn-signup"
               onClick={(e) => SubmitForm(e, email, password)}
             >
