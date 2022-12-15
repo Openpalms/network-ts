@@ -83,7 +83,7 @@ const LoginForm = () => {
               <div className="input-block">
                 <label htmlFor="signup-email">E-mail</label>
                 <input
-                  id="signup-email"
+                  placeholder="me@gmail.com"
                   type="email"
                   required
                   value={email}
@@ -93,7 +93,6 @@ const LoginForm = () => {
               <div className="input-block">
                 <label htmlFor="signup-email">Full name</label>
                 <input
-                  id="signup-email"
                   type="text"
                   required
                   placeholder="John Smith"
@@ -104,7 +103,6 @@ const LoginForm = () => {
               <div className="input-block">
                 <label htmlFor="signup-email">age</label>
                 <input
-                  id="signup-email"
                   type="text"
                   required
                   placeholder="21"

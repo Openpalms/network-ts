@@ -15,12 +15,15 @@ const MainPage = () => {
     const starCountRef = ref(bd, uid);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
+
       if (data !== null) {
         setUser(data);
       }
     });
   }, [uid]);
 
+  const stockPhoto =
+    'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <>
       <div className="  bg-[#50597b]  rounded-xl flex justify-center">
@@ -30,10 +33,11 @@ const MainPage = () => {
           </p>
 
           <img
-            src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000"
+            src={user.url || stockPhoto}
             className="w-[170px] h-40 rounded-md"
             alt="avatar"
           />
+
           <p className="pt-5 text-sm">{user && user.status}</p>
           <div className="mt-10 flex">
             <button className="uppercase mr-1 p-2 bg-[#13a7ab] rounded ">

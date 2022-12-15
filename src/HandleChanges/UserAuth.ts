@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { auth } from '../api/config';
+import { auth, storage } from '../api/config';
 import { onAuthStateChanged } from 'firebase/auth';
 import { HandleUserActions } from '../api/Socials';
 import { IPost } from '../Types/Post';
@@ -8,6 +8,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import dayjs from 'dayjs';
 
 export const AuthUser = () => {
@@ -124,6 +125,22 @@ export const IsUserLogged = () => {
     currentUser,
   };
 };
+export const UpdateStatus = () => {
+  const [status, setStatus] = useState('');
+
+  const submitStatus = (status: string) => {
+    if (auth.currentUser?.uid && status !== '') {
+      HandleUserActions.updateUserStatus(auth.currentUser?.uid, status);
+    }
+    setStatus('');
+  };
+
+  return {
+    submitStatus,
+    setStatus,
+    status,
+  };
+};
 export const SetUserProfile = () => {
   const [fullName, setFullName] = useState('');
   const [age, setAge] = useState('');
@@ -181,4 +198,20 @@ export const AddNewPost = () => {
     setPostBody,
     postBody,
   };
+};
+
+export const uploadFiles = (file: any) => {
+  if (!file) return;
+  const storageRef = ref(storage, auth.currentUser?.uid);
+  const uploadTask = uploadBytesResumable(storageRef, file);
+  uploadTask.on(
+    'state_changed',
+    (snapshot) => {},
+    (err) => console.log(err),
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+        HandleUserActions.addUserPhoto(auth.currentUser?.uid, url);
+      });
+    }
+  );
 };

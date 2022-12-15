@@ -11,16 +11,17 @@ dayjs.extend(relativeTime);
 
 const Posts = (props: IPost) => {
   const uid = auth.currentUser?.uid;
-
   const [time, setTime] = useState('');
   const [likes, setLikes] = useState([]);
   const [unlike, setUnlikes] = useState([]);
+
   useEffect(() => {
     const DayJs = dayjs().format('YYYY/MM/DD');
     const formatedDate = props.createAt.slice(0, 10);
     const difference = dayjs(formatedDate).from(DayJs);
     setTime(difference);
   }, [props.createAt]);
+
   useEffect(() => {
     props.likesCount &&
       setLikes(Object.assign([], Object.values(props.likesCount)));
@@ -31,14 +32,10 @@ const Posts = (props: IPost) => {
         )
       );
   }, [props.likesCount, uid]);
+
   return (
     <>
       <div className="flex">
-        <img
-          src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
-          alt="avatar"
-          className="h-10 w-10 "
-        />
         <p className="ml-5">{props.postBody}</p>
       </div>
       <div className="flex items-center justify-between">

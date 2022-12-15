@@ -26,12 +26,10 @@ const RightBar = () => {
           },
           ['desc']
         );
-
         setPosts(ordered);
       } else setPosts(null as unknown as IPost[]);
     });
   }, [uid]);
-
   return (
     <div className=" bg-[#50597b] w-[100%] h-[500px] flex flex-col items-center rounded-md  text-white">
       <div className=" w-[100%] h-[10%] mb-2 bg-[#13a7ab] rounded-t-md text-center uppercase ">

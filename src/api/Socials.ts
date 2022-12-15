@@ -11,6 +11,14 @@ export const HandleUserActions = {
   addUserInfo(body: IUser) {
     set(ref(bd, `${body.uid}/`), { ...body });
   },
+  updateUserStatus(uid: string | undefined, status: string) {
+    update(ref(bd, `${uid}/`), { status: status });
+  },
+  addUserPhoto(uid: any, url: any) {
+    update(ref(bd, `${uid}/`), {
+      url: url,
+    });
+  },
   addPost(post: IPost) {
     update(ref(bd, `${post.authorId}/posts/${post.postId}`), { ...post });
   },

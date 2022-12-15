@@ -6,4 +6,5 @@ export interface IUser {
   age: string;
   status: string;
   posts?: IPost;
+  url?: string;
 }
