@@ -7,4 +7,11 @@ export interface IUser {
   status: string;
   posts?: IPost;
   url?: string;
+  followers?: any;
+  following?: any;
+}
+
+interface IFollower {
+  uid: string;
+  messages?: Array<string>;
 }

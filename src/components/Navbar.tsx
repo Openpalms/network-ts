@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
+import { auth } from '../api/config';
 const Navbar = () => {
   return (
     <>
@@ -7,10 +8,16 @@ const Navbar = () => {
         <h2 className="pl-5 uppercase text-[#13a7ab]">navbar</h2>
         <div className="w-[50%] h-[100%] flex justify-around items-end pt-3 text-center font-bold transition-all">
           <Link
-            to={'/'}
+            to={`/${auth.currentUser?.uid}`}
             className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
           >
-            Main
+            home
+          </Link>
+          <Link
+            to={`/QHBb23hCoGbe9fPt7QnNlhOmPeI3`}
+            className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
+          >
+            test{' '}
           </Link>
           <Link
             to={'/'}

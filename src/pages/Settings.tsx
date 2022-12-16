@@ -46,20 +46,6 @@ const Settings = () => {
           ) : (
             <p className="mt-5">You did not choose file yet</p>
           )}
-          {/* <input
-            className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg  "
-            placeholder="Enter your fullname"
-            onFocus={() => setProgress('h-[30%]')}
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          /> */}
-          {/* <input
-            className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg"
-            placeholder="enter your age"
-            onFocus={() => setProgress('h-[50%]')}
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
-          /> */}
           <textarea
             className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg resize-none"
             placeholder="status"
@@ -80,15 +66,6 @@ const Settings = () => {
           ></div>
         </div>
       </div>
-      {/* <button
-        className="mt-10 bg-[#13a7ab] h-10 rounded uppercase hover:shadow-2xl hover:bg-[#17c0c5] transition-all"
-        onClick={(e) => {
-          e.preventDefault();
-          uploadFiles(file);
-        }}
-      >
-        test
-      </button> */}
     </div>
   );
 };

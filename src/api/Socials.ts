@@ -30,4 +30,20 @@ export const HandleUserActions = {
   disLike(post: IPost, uid: string | undefined) {
     remove(ref(bd, `${post.authorId}/posts/${post.postId}/likesCount/${uid}/`));
   },
+  followUser(uid: string | undefined, personId: string | undefined) {
+    update(ref(bd, `${uid}/followers/${personId}/`), {
+      personId,
+    });
+  },
+  setFollowing(uid: string | undefined, personId: string | undefined) {
+    update(ref(bd, `${personId}/following/${uid}/`), {
+      uid,
+    });
+  },
+  unfollowUser(uid: string | undefined, personId: string | undefined) {
+    remove(ref(bd, `${personId}/followers/${uid}/`));
+  },
+  setUnfollow(personId: string | undefined, uid: string | undefined) {
+    remove(ref(bd, `${personId}/following/${uid}/`));
+  },
 };

@@ -1,9 +1,10 @@
+import { redirect } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { auth, storage } from '../api/config';
+import { nanoid } from 'nanoid';
 import { onAuthStateChanged } from 'firebase/auth';
+import { auth, storage } from '../api/config';
 import { HandleUserActions } from '../api/Socials';
 import { IPost } from '../Types/Post';
-import { nanoid } from 'nanoid';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -80,6 +81,8 @@ export const LogUserIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
+        return redirect(`/dasdlfsfsdfds`);
       })
       .catch((er) => {
         const errorMessage = er.message;
@@ -90,7 +93,6 @@ export const LogUserIn = () => {
           setLoginError('');
         }, 5000);
       });
-    // HandleUserActions.loginUser(auth, email, password);
     clearInput();
   };
 

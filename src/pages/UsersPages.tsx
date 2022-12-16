@@ -45,7 +45,7 @@ const UserPages = () => {
           users
             .filter(
               (user: IUser) =>
-                user.fullname.toLowerCase().includes(query) &&
+                user.fullname?.toLowerCase().includes(query) &&
                 user.uid !== auth.currentUser?.uid
             )
             .map((user: IUser) => <UserCard {...user} key={user.uid} />)}

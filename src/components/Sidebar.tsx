@@ -19,7 +19,7 @@ const Sidebar = () => {
         Find new friends
       </Link>
       <Link
-        to={'/users'}
+        to={'/messages'}
         className="hover:text-[#13a7ab] 
         hover:-mb-[4px]
         hover:border-b-4 border-[#13a7ab]	  transition-all "
