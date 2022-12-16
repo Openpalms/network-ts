@@ -1,4 +1,4 @@
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -18,6 +18,7 @@ export const AuthUser = () => {
   const [error, setError] = useState('');
   const [authName, setAuthName] = useState('');
   const [authAge, setAuthAge] = useState('');
+  const navigate = useNavigate();
   const SubmitForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     email: string,
@@ -33,6 +34,8 @@ export const AuthUser = () => {
           age: authAge,
           status: '',
         });
+        ///redirect to user profile
+        navigate(`/${user.uid}`);
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -71,7 +74,7 @@ export const LogUserIn = () => {
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
-
+  const navigate = useNavigate();
   const SubmitLoginForm = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     email: string,
@@ -81,8 +84,8 @@ export const LogUserIn = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        return redirect(`/dasdlfsfsdfds`);
+        ///redirect to user profile
+        navigate(`/${user.uid}`);
       })
       .catch((er) => {
         const errorMessage = er.message;

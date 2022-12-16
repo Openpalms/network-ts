@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { bd, auth } from '../api/config';
 import { IUser } from '../Types/User';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
+import RightBar from '../components/RightBar';
 
-const MainPage = ({ currentUser }: any) => {
+const MainPage = () => {
   const { id } = useParams();
   const uid = id || auth.currentUser?.uid;
   const [user, setUser] = useState({
@@ -58,7 +59,7 @@ const MainPage = ({ currentUser }: any) => {
     'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <>
-      <div className="  bg-[#50597b]  rounded-xl flex justify-center">
+      <div className="  bg-[#50597b]  rounded-xl flex justify-around">
         <div className="flex flex-col justify-start w-48 m-10 ml-16 text-white">
           <p className="font-bold text-2xl text-center">
             {user && user.fullname}, {user && user.age}
@@ -106,6 +107,9 @@ const MainPage = ({ currentUser }: any) => {
               </>
             )}
           </div>
+        </div>
+        <div className="w-[30%] ">
+          <RightBar />
         </div>
       </div>
     </>

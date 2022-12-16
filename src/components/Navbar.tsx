@@ -14,12 +14,6 @@ const Navbar = () => {
             home
           </Link>
           <Link
-            to={`/QHBb23hCoGbe9fPt7QnNlhOmPeI3`}
-            className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
-          >
-            test{' '}
-          </Link>
-          <Link
             to={'/'}
             className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
           >
