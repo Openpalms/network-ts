@@ -1,10 +1,12 @@
 import './App.css';
+import React from 'react';
 import {
   Routes,
   Route,
   useParams,
   useNavigate,
   redirect,
+  Navigate,
 } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
@@ -14,9 +16,22 @@ import { IsUserLogged } from './HandleChanges/UserAuth';
 import Settings from './pages/Settings';
 import UserPages from './pages/UsersPages';
 import Messenger from './pages/Messenger';
+
 function App() {
   const { currentUser } = IsUserLogged();
-  const navigate = useNavigate();
+
+  const ProtectedRoute = ({ children }: any) => {
+    if (!currentUser) {
+      return <Navigate to={'/login'} />;
+    }
+    return <>{children}</>;
+  };
+  const LoginRoute = ({ children }: any) => {
+    if (currentUser) {
+      return <Navigate to={`/${currentUser.uid}`} />;
+    }
+    return <>{children}</>;
+  };
   return (
     <div className=" grid grid-cols-[0.5fr,1fr,0.5fr] grid-rows-[100px,1fr] gap-6">
       <div className="col-span-3 h-[50%]">
@@ -30,16 +45,47 @@ function App() {
           {/* checking if user is logined and can access pages 
           Need to think of better solution with switches tho 
           */}
-          {!currentUser ? (
-            <Route path="*" element={<LoginPage />} />
-          ) : (
-            <>
-              <Route path="/settings" element={<Settings />} />
-              <Route path={`/:id`} element={<MainPage />} />
-              <Route path="/users" element={<UserPages />} />
-              <Route path="/messages" element={<Messenger />} />
-            </>
-          )}
+
+          <Route
+            path="/login"
+            element={
+              <LoginRoute>
+                <LoginPage />
+              </LoginRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={`/:id`}
+            element={
+              <ProtectedRoute>
+                <MainPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute>
+                <UserPages />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/messages"
+            element={
+              <ProtectedRoute>
+                <Messenger />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </div>
     </div>

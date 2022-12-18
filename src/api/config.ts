@@ -1,8 +1,10 @@
 import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 import { getDatabase } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-
+import { collection, addDoc } from 'firebase/firestore';
+import 'firebase/firestore';
 import 'firebase/auth';
 
 const firebaseConfig = {
@@ -17,6 +19,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const FirestoreDB = getFirestore(app);
 export const bd = getDatabase(app);
 export const storage = getStorage(app);
 export const auth = getAuth();
