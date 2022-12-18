@@ -20,7 +20,7 @@ const Navbar = () => {
             Login
           </Link>
           <Link
-            to={''}
+            to={'/login'}
             className="hover:text-[#13a7ab] hover:border-b-4 border-[#13a7ab]	  transition-all h-[100%] w-[10%]"
             onClick={HandleUserActions.logoutUser}
           >

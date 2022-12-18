@@ -1,13 +1,6 @@
 import './App.css';
 import React from 'react';
-import {
-  Routes,
-  Route,
-  useParams,
-  useNavigate,
-  redirect,
-  Navigate,
-} from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import Navbar from './components/Navbar';
