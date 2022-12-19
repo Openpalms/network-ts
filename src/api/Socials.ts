@@ -1,4 +1,4 @@
-import { bd, storage, auth } from './config';
+import { bd, auth } from './config';
 import { ref, remove, set, update } from 'firebase/database';
 import { useState } from 'react';
 import { IUser } from '../Types/User';
@@ -6,11 +6,8 @@ import { IPost } from '../Types/Post';
 import { FirestoreDB } from '../api/config';
 import {
   arrayUnion,
-  collection,
   doc,
   getDoc,
-  getDocs,
-  serverTimestamp,
   onSnapshot,
   setDoc,
   Timestamp,
@@ -89,18 +86,9 @@ export const handleMessageSent = async (
   selectedId: string,
   text: string
 ) => {
+  if (text.length === 0 || text.trim().length === 0) return;
   const combinedId = currentId + selectedId;
   const reversedId = selectedId + currentId;
-  // const update = async (id: string) => {
-  //   await updateDoc(doc(FirestoreDB, 'chats', id), {
-  //     messages: arrayUnion({
-  //       id: nanoid(),
-  //       text,
-  //       senderId: currentId,
-  //       date: Timestamp.now(),
-  //     }),
-  //   });
-  // };
   try {
     const docRef = doc(FirestoreDB, 'chats', combinedId);
     const res = await getDoc(docRef);
@@ -131,11 +119,11 @@ export const HandleGetMessages = async (
   currentId: string,
   selectedId: string
 ) => {
+  const [dialog, setDialog] = useState([]);
   const combinedId = currentId! + selectedId!;
   const reversedId = selectedId + currentId;
   const unsub = onSnapshot(doc(FirestoreDB, 'chats', reversedId), (doc) => {
-    console.log('Current data: ', doc.data());
-    return doc.data();
+    doc.exists() && setDialog(doc.data().messages);
   });
 
   // const docRef = doc(FirestoreDB, 'chats', reversedId);

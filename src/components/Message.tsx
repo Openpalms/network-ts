@@ -1,17 +1,21 @@
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { auth } from '../api/config';
 import { IMessage } from '../Types/Message';
 
 function Message(props: IMessage) {
-  console.log(props.date);
+  const ref = useRef<null | HTMLDivElement>(null);
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
   return (
     <div
-      className={`rounded  bg-[white] w-[20%]  p-3 m-2 ${
+      className={`rounded-md  bg-[white] max-w-md  p-3 m-2 ${
         props.senderId === auth.currentUser?.uid
-          ? 'bg-[green] self-end'
-          : 'bg-[red] self-start'
+          ? 'bg-[#9C92A3] self-end mr-5'
+          : 'bg-[#0B3142] self-start ml-5'
       }`}
+      ref={ref}
     >
       <p className="text-white p-2 ">{props.text}</p>
     </div>

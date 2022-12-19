@@ -25,8 +25,7 @@ function Chat(props: any) {
   }, [reversedId, combinedId]);
   return (
     <>
-      <div className="flex flex-col w-full h-[80vh] relative overflow-scroll">
-        {/* <div className="overflow-scroll"> */}
+      <div className="flex flex-col w-full h-[80vh]  justify-end">
         <div className="flex flex-col overflow-scroll mb-5 ">
           {dialog.map((m) => (
             <Message
@@ -37,25 +36,33 @@ function Chat(props: any) {
               senderId={m.senderId}
             />
           ))}
-          {/* <Message />
-          <Message />
-          <Message />
-          <Message /> */}
+          {dialog.length === 0 && (
+            <p className="self-center justify-self-center text-white">
+              No messages yet.
+            </p>
+          )}
         </div>
-        <input
-          className="h-20 w-[55vw] p-2 absolute bottom-0"
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-        />
-        <button
-          className="border-l-8 border-[#13a7ab] bg-[#13a7ab] absolute bottom-0 right-0 h-20 uppercase"
-          onClick={() => {
-            handleMessageSent(auth.currentUser!.uid, props.id, message);
-            setMessage('');
-          }}
-        >
-          send
-        </button>
+        <div className="flex">
+          <input
+            className="h-[85px] w-[55vw] p-2 justify-self-end self-center outline-none"
+            onChange={(e) => setMessage(e.target.value)}
+            value={message}
+            onKeyDown={(e) => {
+              e.key === 'Enter' &&
+                handleMessageSent(auth.currentUser!.uid, props.id, message);
+              e.key === 'Enter' && setMessage('');
+            }}
+          />
+          <button
+            className="border bg-[#13a7ab] h-full w-[100px] uppercase outline-none hover:bg-white transition-all"
+            onClick={() => {
+              handleMessageSent(auth.currentUser!.uid, props.id, message);
+              setMessage('');
+            }}
+          >
+            send
+          </button>
+        </div>
       </div>
     </>
   );
