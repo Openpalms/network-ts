@@ -215,7 +215,7 @@ export const uploadFiles = (file: any) => {
     (err) => console.log(err),
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-        HandleUserActions.addUserPhoto(auth.currentUser?.uid, url);
+        HandleUserActions.addUserPhoto(auth.currentUser!.uid, url);
       });
     }
   );

@@ -5,13 +5,13 @@ const UserCard = (props: IUser) => {
     'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <NavLink to={'/' + props.uid}>
-      <div className="flex my-5 mx-5 border justify-start items-center rounded  ">
+      <div className="flex flex-col my-5 mx-5 border-black items-center rounded bg-[#13a7ab] ">
         <img
           src={props.url || stockPhoto}
           alt="avatar"
-          className="h-20 w-20 mr-2"
+          className="h-48 w-48 m-2 rounded"
         />
-        <h3 className="text-white w-[40%]">
+        <h3 className="text-white my-5">
           {props.fullname}, {props.age}
         </h3>
         <div className="flex justify-end w-[60%] h-[100%] mr-5"></div>

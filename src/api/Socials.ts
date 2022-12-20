@@ -14,6 +14,7 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
+import { IMessage } from '../Types/Message';
 export const HandleUserActions = {
   logoutUser() {
     auth.signOut();
@@ -25,7 +26,7 @@ export const HandleUserActions = {
   updateUserStatus(uid: string | undefined, status: string) {
     update(ref(bd, `${uid}/`), { status: status });
   },
-  addUserPhoto(uid: any, url: any) {
+  addUserPhoto(uid: string, url: string) {
     update(ref(bd, `${uid}/`), {
       url: url,
     });
@@ -100,7 +101,7 @@ export const handleMessageSent = async (
           id: nanoid(),
           text,
           senderId: currentId,
-          date: Timestamp.now(),
+          date: Timestamp.now().toDate().toDateString(),
         }),
       });
     }
@@ -109,7 +110,7 @@ export const handleMessageSent = async (
         id: nanoid(),
         text,
         senderId: currentId,
-        date: Timestamp.now(),
+        date: Timestamp.now().toDate().toDateString(),
       }),
     });
   } catch {}
@@ -125,14 +126,54 @@ export const HandleGetMessages = async (
   const unsub = onSnapshot(doc(FirestoreDB, 'chats', reversedId), (doc) => {
     doc.exists() && setDialog(doc.data().messages);
   });
+};
+export const GetLastmessage = () => {
+  const [lastMessage, setLastMessage] = useState(null as unknown as IMessage);
+  return {
+    lastMessage,
+    setLastMessage,
+  };
+};
 
-  // const docRef = doc(FirestoreDB, 'chats', reversedId);
-  // const docSnap = await getDoc(docRef);
-  // if (docSnap.exists()) {
-  //   console.log(await docSnap.data().messages);
-  // }
-
-  // const unsub = onSnapshot(doc(FirestoreDB, 'chats', reversedId), (doc) => {
-  //   console.log('Current data: ', doc.data());
-  // });
+export const handleDeleteMessage = async (
+  dialog: IMessage[],
+  currentId: string,
+  messageId: string,
+  chatId: string
+) => {
+  if (currentId !== auth.currentUser!.uid) return;
+  try {
+    console.log('deleting');
+    const docRef = doc(FirestoreDB, 'chats', chatId);
+    const res = await getDoc(docRef);
+    if (!res.exists()) {
+      console.log('empty');
+    }
+    await updateDoc(doc(FirestoreDB, 'chats', chatId), {
+      messages: dialog.filter((m) => m.id !== messageId),
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const handleUpdateMessage = async (
+  dialog: IMessage[],
+  currentId: string,
+  messageId: string,
+  chatId: string
+) => {
+  if (currentId !== auth.currentUser!.uid) return;
+  try {
+    console.log('deleting');
+    const docRef = doc(FirestoreDB, 'chats', chatId);
+    const res = await getDoc(docRef);
+    if (!res.exists()) {
+      console.log('empty');
+    }
+    await updateDoc(doc(FirestoreDB, 'chats', chatId), {
+      messages: dialog.filter((m) => m.id !== messageId),
+    });
+  } catch (e) {
+    console.log(e);
+  }
 };

@@ -39,7 +39,7 @@ const Posts = (props: IPost) => {
         <p className="ml-5">{props.postBody}</p>
       </div>
       <div className="flex items-center justify-between">
-        <p className="ml-2 text-lg text-[#13a7ab] flex items-center">
+        <p className="ml-2 text-lg text-[#13a7ab] flex items-center ">
           <span className="w-[0.5rem]">{likes && likes.length - 1}</span>
           {unlike.length > 0 ? (
             <img

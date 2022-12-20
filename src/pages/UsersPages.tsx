@@ -6,9 +6,15 @@ import { onValue, ref } from 'firebase/database';
 import { bd } from '../api/config';
 import { IUser } from '../Types/User';
 import { auth } from '../api/config';
+import Pagination from '../components/Pagination';
 const UserPages = () => {
   const [query, setQuery] = useState('');
   const [users, setUsers] = useState([] as any);
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 3;
+  const lastUserIndex = currentPage * usersPerPage;
+  const firstUserIndex = lastUserIndex - usersPerPage;
+
   useEffect(() => {
     const starCountRef = ref(bd);
     onValue(starCountRef, (snapshot) => {
@@ -19,6 +25,8 @@ const UserPages = () => {
       }
     });
   }, []);
+
+  const currentUsers = users.slice(firstUserIndex, lastUserIndex);
   return (
     <div className="flex  w-[100%] h-[100%] bg-[#50597b]  rounded-xl flex-col overflow-y-scroll ">
       <div className="m-5 ">
@@ -37,18 +45,26 @@ const UserPages = () => {
           />
         </label>
       </div>
-      <p className="my-5 mx-auto w-14 h-14 ">
-        <img src={scroll} alt="" />
-      </p>
-      <div className="flex flex-col overflow-x-scroll h-[20rem] p-5 border mx-5 bg-[#1f253d] rounded ">
-        {users &&
-          users
-            .filter(
-              (user: IUser) =>
-                user.fullname?.toLowerCase().includes(query) &&
-                user.uid !== auth.currentUser?.uid
-            )
-            .map((user: IUser) => <UserCard {...user} key={user.uid} />)}
+
+      <div className="flex flex-col  p-5  mx-5 rounded ">
+        <div className="self-center">
+          <Pagination
+            totalUsers={users.length}
+            usersPerPage={usersPerPage}
+            setCurrentPage={setCurrentPage}
+            currentPage={currentPage}
+          />
+        </div>
+        <div className="flex justify-center items-center w-full">
+          {currentUsers &&
+            currentUsers
+              .filter(
+                (user: IUser) =>
+                  user.fullname?.toLowerCase().includes(query) &&
+                  user.uid !== auth.currentUser?.uid
+              )
+              .map((user: IUser) => <UserCard {...user} key={user.uid} />)}
+        </div>
       </div>
     </div>
   );

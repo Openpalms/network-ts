@@ -21,7 +21,7 @@ const RightBar = () => {
         const formatedData = Object.assign([], Object.values(dbPosts));
         const ordered = _.orderBy(
           formatedData,
-          function (item: any) {
+          function (item: IPost) {
             return item.createAt;
           },
           ['desc']
@@ -32,20 +32,19 @@ const RightBar = () => {
   }, [uid]);
 
   return (
-    <div className=" bg-[#50597b] w-[100%] h-[500px] flex flex-col items-center text-white">
+    <div className=" bg-[#50597b] w-[100%] h-[500px] flex flex-col items-center text-white border m-5">
       <div className=" w-[100%] h-[10%] mb-2  rounded-t-md text-center uppercase border-b">
         feed
       </div>
-      <div className=" rounded-t-lg text-black overflow-scroll h-100 flex flex-col gap-5 p-2">
+      <div className=" rounded-t-lg text-black overflow-scroll h-full flex flex-col gap-5 p-2 w-full">
         {posts &&
           posts.map((item: IPost) => <Posts key={item.postId} {...item} />)}
       </div>
-      <div className=" w-[100%] h-[1%]  bg-white  text-center uppercase"></div>
-      <div className="flex justify-between w-[100%] outline-none">
+      <div className="flex justify-between  outline-none w-full  self-end">
         {isMyPage && (
           <>
             <textarea
-              className="resize-none h-[5rem] text-[#13a7ab] p-2 bg-transparent border outline-none"
+              className="resize-none h-[5rem] text-black p-2 bg-transparent border outline-none w-[70%] focus:bg-[#cdcdcd] transition-all  self-end"
               placeholder="Share something!"
               value={postBody}
               onChange={(e) => setPostBody(e.target.value)}
@@ -54,7 +53,7 @@ const RightBar = () => {
               }}
             />
             <button
-              className="border w-[50%] h-[50%] hover:bg-[#13a7ab] transition-all"
+              className="border w-[50%] bg-[#13a7ab] hover:bg-[#0f7a7e] transition-all h-[100%]  self-end"
               onClick={(e) => CreateNewPost(postBody)}
             >
               post

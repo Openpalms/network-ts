@@ -1,12 +1,8 @@
 import { useState } from 'react';
-import {
-  SetUserProfile,
-  UpdateStatus,
-  uploadFiles,
-} from '../HandleChanges/UserAuth';
+import { UpdateStatus, uploadFiles } from '../HandleChanges/UserAuth';
 const Settings = () => {
   const [progress, setProgress] = useState('h-[10%]');
-  const [file, setFile] = useState('' as any);
+  const [file, setFile] = useState(null as any);
   const handleButtonClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
@@ -23,6 +19,7 @@ const Settings = () => {
     if (!e.target.files || e.target.files.length === 0) {
       return;
     }
+    console.log(e.target.files[0]);
     setFile(e.target.files[0]);
   };
   const { setStatus, status, submitStatus } = UpdateStatus();
@@ -33,6 +30,7 @@ const Settings = () => {
           <p className="mb-5"> Set up your photo:</p>
           <input
             type="file"
+            accept="image/png, image/jpeg"
             className="block w-full text-sm text-[#50597b]
       file:mr-4 file:py-2 file:px-4
       file:rounded-full file:border-0

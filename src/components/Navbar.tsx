@@ -1,11 +1,14 @@
 import { Link } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
 import { auth } from '../api/config';
+import NavbarTyping from './NavbarTyping';
 const Navbar = () => {
   return (
     <>
       <div className="flex items-center justify-between h-[50px] bg-[#50597b] shadow  text-white">
-        <h2 className="pl-5 uppercase text-[#13a7ab]">navbar</h2>
+        <div className="pl-5 uppercase text-[#13a7ab]">
+          <NavbarTyping />
+        </div>
         <div className="w-[50%] h-[100%] flex justify-around items-end pt-3 text-center font-bold transition-all">
           <Link
             to={`/${auth.currentUser?.uid}`}

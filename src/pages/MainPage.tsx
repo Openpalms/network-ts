@@ -60,7 +60,7 @@ const MainPage = () => {
   return (
     <>
       <div className="  bg-[#50597b]  rounded-xl flex justify-around">
-        <div className="flex flex-col justify-start w-48 m-10 ml-16 text-white">
+        <div className="flex flex-col justify-start w-fit m-10 ml-16  text-white">
           <p className="font-bold text-2xl text-center">
             {user && user.fullname}, {user && user.age}
           </p>
@@ -74,7 +74,14 @@ const MainPage = () => {
             <br />
             {followers && followers.length} followers
           </p>
-          <p className="pt-5 text-sm">{user && user.status}</p>
+          <hr />
+          <span className="pt-5 text-sm">
+            {user.status ? (
+              <p className="text-center">{user.status}</p>
+            ) : (
+              <p className="italic opacity-60 text-center">no status yet...</p>
+            )}
+          </span>
           <div className="mt-10 flex flex-row">
             <button
               className={`uppercase mr-1 p-2 bg-[#13a7ab] rounded ${
@@ -108,9 +115,8 @@ const MainPage = () => {
             )}
           </div>
         </div>
-        <div className="w-[30%] ">
-          <RightBar />
-        </div>
+
+        <RightBar />
       </div>
     </>
   );

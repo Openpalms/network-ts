@@ -6,9 +6,9 @@ import Chat from '../components/Chat';
 import ChatCard from '../components/ChatCard';
 
 function Messenger() {
-  const [users, setUsers] = useState([] as any);
+  const [users, setUsers] = useState([] as IUser[]);
   const [currentUser, setCurrentUser] = useState(null as unknown as IUser[]);
-  const [chatId, setId] = useState('' as any);
+  const [chatId, setId] = useState('' as string);
   const id = auth.currentUser?.uid;
   useEffect(() => {
     const starCountRef = ref(bd);
@@ -26,11 +26,11 @@ function Messenger() {
 
   return (
     <div className="flex relative w-full h-[100%] bg-[#50597b]  rounded-xl  overflow-y-scroll ">
-      <div className="border-r w-[20rem] h-[30rem] overflow-x-scroll flex flex-col">
+      <div className="border-r w-[100%] h-[30rem] overflow-x-scroll flex flex-col">
         {users.map((follower: IUser) => (
           <div
             className=""
-            onClick={() => setId(follower.uid)}
+            onClick={() => setId(follower.uid!)}
             key={follower.uid}
           >
             <ChatCard {...currentUser} {...follower} chatId={chatId} />

@@ -1,7 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { IsUserLogged } from '../HandleChanges/UserAuth';
+import { Routes } from '../Types/Props';
 
-function ProtectedRoute({ children }: any) {
+function ProtectedRoute({ children }: Routes) {
   const { currentUser } = IsUserLogged();
 
   if (!currentUser) {

@@ -1,28 +1,34 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Message from './Message';
 import { auth } from '../api/config';
-import { HandleGetMessages, handleMessageSent } from '../api/Socials';
+import { handleMessageSent } from '../api/Socials';
 import { FirestoreDB } from '../api/config';
 import { IMessage } from '../Types/Message';
 import { doc, onSnapshot } from 'firebase/firestore';
-function Chat(props: any) {
+import { ChatIdProps } from '../Types/Props';
+
+function Chat({ id }: ChatIdProps) {
   const [message, setMessage] = useState('');
   const [dialog, setDialog] = useState<IMessage[]>([]);
-  const combinedId = auth.currentUser!.uid + props.id;
-  const reversedId = props.id + auth.currentUser!.uid;
+  const [chatId, setChatId] = useState('');
+  const combinedId = auth.currentUser!.uid + id;
+  const reversedId = id + auth.currentUser!.uid;
   useEffect(() => {
     ///checking if dialog is in db with reversedID
     const unSub = onSnapshot(doc(FirestoreDB, 'chats', reversedId), (doc) => {
       doc.exists() && setDialog(doc.data().messages);
+      doc.exists() && setChatId(reversedId);
     });
     ///if dialog is not reversedId then it's straight forward id
     const unSubId = onSnapshot(doc(FirestoreDB, 'chats', combinedId), (doc) => {
       doc.exists() && setDialog(doc.data().messages);
+      doc.exists() && setChatId(combinedId);
     });
     return () => {
       unSub();
     };
   }, [reversedId, combinedId]);
+
   return (
     <>
       <div className="flex flex-col w-full h-[80vh]  justify-end">
@@ -34,6 +40,8 @@ function Chat(props: any) {
               date={m.date}
               id={m.id}
               senderId={m.senderId}
+              chatId={chatId}
+              dialog={dialog}
             />
           ))}
           {dialog.length === 0 && (
@@ -49,14 +57,14 @@ function Chat(props: any) {
             value={message}
             onKeyDown={(e) => {
               e.key === 'Enter' &&
-                handleMessageSent(auth.currentUser!.uid, props.id, message);
+                handleMessageSent(auth.currentUser!.uid, id, message);
               e.key === 'Enter' && setMessage('');
             }}
           />
           <button
             className="border bg-[#13a7ab] h-full w-[100px] uppercase outline-none hover:bg-white transition-all"
             onClick={() => {
-              handleMessageSent(auth.currentUser!.uid, props.id, message);
+              handleMessageSent(auth.currentUser!.uid, id, message);
               setMessage('');
             }}
           >
