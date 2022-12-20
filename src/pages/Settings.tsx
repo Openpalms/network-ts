@@ -59,7 +59,7 @@ const Settings = () => {
             save
           </button>
         </form>
-        <div className="flex flex-col justify-start w-[50%] p-10 ">
+        <div className="hidden md:flex flex-col justify-start w-[50%] p-10 ">
           <div
             className={`${progress} w-[10%] border transition-all border-[#F4F4F9]`}
           ></div>

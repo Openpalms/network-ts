@@ -46,7 +46,7 @@ const UserPages = () => {
         </label>
       </div>
 
-      <div className="flex flex-col  p-5  mx-5 rounded ">
+      <div className=" flex flex-col  p-5  mx-5 rounded ">
         <div className="self-center">
           <Pagination
             totalUsers={users.length}
@@ -55,7 +55,7 @@ const UserPages = () => {
             currentPage={currentPage}
           />
         </div>
-        <div className="flex justify-center items-center w-full">
+        <div className=" flex flex-col md:flex-row justify-center items-center w-full">
           {currentUsers &&
             currentUsers
               .filter(

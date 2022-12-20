@@ -60,7 +60,7 @@ const MainPage = () => {
     'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <>
-      <div className="  bg-[#04724D]  rounded-xl flex justify-around">
+      <div className="  bg-[#04724D]  rounded-xl flex justify-around max-[600px]:flex-col ">
         <div className="flex flex-col justify-start w-fit m-10 ml-16  text-white">
           <p className="font-bold text-2xl text-center">
             {user && user.fullname}, {user && user.age}
