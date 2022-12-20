@@ -14,14 +14,14 @@ function Message(props: MessageProps) {
     <div
       className={`rounded-md  bg-[white] max-w-md  p-3 m-2  ${
         props.senderId === auth.currentUser?.uid
-          ? 'bg-[#D6D3F0] self-end mr-5 '
+          ? 'bg-[#586F7C] self-end mr-5 text-white'
           : 'bg-[#0B3142] self-start ml-5'
       }`}
       ref={ref}
     >
       <p
         className={`text-white p-2
-      ${props.senderId === auth.currentUser?.uid && 'text-black '}
+      ${props.senderId !== auth.currentUser!.uid && 'text-black '}
       `}
       >
         {props.text}

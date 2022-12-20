@@ -28,7 +28,7 @@ const UserPages = () => {
 
   const currentUsers = users.slice(firstUserIndex, lastUserIndex);
   return (
-    <div className="flex  w-[100%] h-[100%] bg-[#50597b]  rounded-xl flex-col overflow-y-scroll ">
+    <div className="flex  w-[100%] h-[100%] bg-[#04724D]  rounded-xl flex-col overflow-y-scroll ">
       <div className="m-5 ">
         <label className="relative block">
           <span className="sr-only">Search</span>

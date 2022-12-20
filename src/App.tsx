@@ -26,7 +26,7 @@ function App() {
     return <>{children}</>;
   };
   return (
-    <div className=" grid grid-cols-[0.5fr,1fr,0.5fr] grid-rows-[100px,1fr] gap-6">
+    <div className=" grid grid-cols-[0.5fr,1fr,0.5fr] grid-rows-[100px,1fr] gap-6 ">
       <div className="col-span-3 h-[50%]">
         <Navbar />
       </div>

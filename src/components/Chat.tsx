@@ -31,7 +31,7 @@ function Chat({ id }: ChatIdProps) {
 
   return (
     <>
-      <div className="flex flex-col w-full h-[80vh]  justify-end">
+      <div className="flex flex-col w-full h-[80vh]  justify-end bg-[#B8DBD9]">
         <div className="flex flex-col overflow-scroll mb-5 ">
           {dialog.map((m) => (
             <Message
@@ -62,7 +62,8 @@ function Chat({ id }: ChatIdProps) {
             }}
           />
           <button
-            className="border bg-[#13a7ab] h-full w-[100px] uppercase outline-none hover:bg-white transition-all"
+            className="border bg-[#04724D] h-full w-[100px] uppercase outline-none hover:bg-white transition-all text-white
+            hover:text-black"
             onClick={() => {
               handleMessageSent(auth.currentUser!.uid, id, message);
               setMessage('');

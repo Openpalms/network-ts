@@ -14,8 +14,8 @@ function Pagination(props: PaginationProps) {
             key={i}
             onClick={() => props.setCurrentPage(p)}
             className={`border text-white w-10 mx-5
-            hover:border-[#13a7ab] rounded-lg transition-all
-            ${props.currentPage === p && 'bg-[#13a7ab]'}
+            hover:scale-150 rounded-lg transition-all
+            ${props.currentPage === p && 'bg-[#B8DBD9]'}
             `}
           >
             {p}

@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { bd, auth } from '../api/config';
 import { IUser } from '../Types/User';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
 import RightBar from '../components/RightBar';
 
 const MainPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const uid = id || auth.currentUser?.uid;
   const [user, setUser] = useState({
     fullname: 'Setup your profile',
@@ -59,7 +60,7 @@ const MainPage = () => {
     'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <>
-      <div className="  bg-[#50597b]  rounded-xl flex justify-around">
+      <div className="  bg-[#04724D]  rounded-xl flex justify-around">
         <div className="flex flex-col justify-start w-fit m-10 ml-16  text-white">
           <p className="font-bold text-2xl text-center">
             {user && user.fullname}, {user && user.age}
@@ -87,8 +88,8 @@ const MainPage = () => {
               className={`uppercase mr-1 p-2 bg-[#13a7ab] rounded ${
                 id === auth.currentUser?.uid ? 'hidden' : ''
               }`}
+              onClick={() => navigate('/messages')}
             >
-              {' '}
               message
             </button>
             {/* checking if current user already following this user and it's not his own page */}

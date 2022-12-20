@@ -25,17 +25,16 @@ const Settings = () => {
   const { setStatus, status, submitStatus } = UpdateStatus();
   return (
     <div className="flex justify-center ">
-      <div className="  bg-[#50597b]  rounded-xl flex justify-around">
+      <div className="  bg-[#04724D]  rounded-xl flex justify-around">
         <form className="flex flex-col justify-start w-48 m-10 ml-16 text-white">
           <p className="mb-5"> Set up your photo:</p>
           <input
             type="file"
             accept="image/png, image/jpeg"
-            className="block w-full text-sm text-[#50597b]
-      file:mr-4 file:py-2 file:px-4
+            className="block w-full text-sm text-[#04724D] file:mr-4 file:py-2 file:px-4
       file:rounded-full file:border-0
       file:text-sm file:font-semibold
-      file:bg-violet-50 file:text-[#13a7ab]
+      file:bg-violet-50 file:text-[#04724D]
       hover:file:bg-violet-100"
             onChange={onUpload}
           />
@@ -45,14 +44,16 @@ const Settings = () => {
             <p className="mt-5">You did not choose file yet</p>
           )}
           <textarea
-            className="mt-10 bg-transparent outline-none border-b-4 border-[#13a7ab] placeholder:text-lg resize-none"
+            className="mt-10 bg-transparent outline-none border-b-4 border-[#F4F4F9] placeholder:text-lg resize-none"
             placeholder="status"
             onFocus={() => setProgress('h-[75%]')}
             value={status}
             onChange={(e) => setStatus(e.target.value)}
           />
           <button
-            className="mt-10 bg-[#13a7ab] h-10 rounded uppercase hover:shadow-2xl hover:bg-[#17c0c5] transition-all"
+            className="mt-10 bg-[#F4F4F9] h-10 
+            text-black
+            rounded uppercase hover:shadow-2xl hover:bg-[#B8DBD9] hover:text-white transition-all"
             onClick={handleButtonClick}
           >
             save
@@ -60,7 +61,7 @@ const Settings = () => {
         </form>
         <div className="flex flex-col justify-start w-[50%] p-10 ">
           <div
-            className={`${progress} w-[10%] border transition-all border-[#13a7ab]`}
+            className={`${progress} w-[10%] border transition-all border-[#F4F4F9]`}
           ></div>
         </div>
       </div>

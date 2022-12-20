@@ -25,7 +25,7 @@ function Messenger() {
   }, []);
 
   return (
-    <div className="flex relative w-full h-[100%] bg-[#50597b]  rounded-xl  overflow-y-scroll ">
+    <div className="flex relative w-full h-[100%] bg-[#04724D]  rounded-xl  overflow-y-scroll ">
       <div className="border-r w-[100%] h-[30rem] overflow-x-scroll flex flex-col">
         {users.map((follower: IUser) => (
           <div

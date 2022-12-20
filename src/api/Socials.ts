@@ -77,9 +77,9 @@ export const handleSelectUser = async (
         await setDoc(doc(FirestoreDB, 'chats', combinedId), { messages: [] });
       }
     }
-  } catch (err) {}
-
-  //create User Chats
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const handleMessageSent = async (
@@ -116,17 +116,6 @@ export const handleMessageSent = async (
   } catch {}
 };
 
-export const HandleGetMessages = async (
-  currentId: string,
-  selectedId: string
-) => {
-  const [dialog, setDialog] = useState([]);
-  const combinedId = currentId! + selectedId!;
-  const reversedId = selectedId + currentId;
-  const unsub = onSnapshot(doc(FirestoreDB, 'chats', reversedId), (doc) => {
-    doc.exists() && setDialog(doc.data().messages);
-  });
-};
 export const GetLastmessage = () => {
   const [lastMessage, setLastMessage] = useState(null as unknown as IMessage);
   return {
@@ -156,24 +145,11 @@ export const handleDeleteMessage = async (
     console.log(e);
   }
 };
-export const handleUpdateMessage = async (
-  dialog: IMessage[],
-  currentId: string,
-  messageId: string,
-  chatId: string
-) => {
-  if (currentId !== auth.currentUser!.uid) return;
-  try {
-    console.log('deleting');
-    const docRef = doc(FirestoreDB, 'chats', chatId);
-    const res = await getDoc(docRef);
-    if (!res.exists()) {
-      console.log('empty');
-    }
-    await updateDoc(doc(FirestoreDB, 'chats', chatId), {
-      messages: dialog.filter((m) => m.id !== messageId),
-    });
-  } catch (e) {
-    console.log(e);
-  }
+
+export const HandleThemeChange = () => {
+  const [isLight, setIsLight] = useState(true);
+  return {
+    isLight,
+    setIsLight,
+  };
 };

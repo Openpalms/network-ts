@@ -63,12 +63,12 @@
 }
 
 .form-wrapper.is-active .switcher-login {
-  color: #fff;
+  color: #04724d;
   transform: translateX(90px);
 }
 
 .form-wrapper.is-active .switcher-signup {
-  color: #fff;
+  color: #04724d;
   transform: translateX(-90px);
 }
 
@@ -90,7 +90,7 @@
   display: block;
   width: inherit;
   height: inherit;
-  background-color: #13a7ab;
+  background-color: #04724d;
   transition: transform 0.2s ease-out;
 }
 
@@ -113,7 +113,7 @@
   padding: 30px 25px;
   border-radius: 5px;
   transform-origin: top;
-  border: 5px solid #13a7ab;
+  border: 5px solid black;
 }
 .formError {
   overflow: hidden;
@@ -134,28 +134,28 @@
 
 @keyframes showLogin {
   0% {
-    background: #1f253d;
+    background: #04724d;
     transform: translate(40%, 10px);
   }
   50% {
     transform: translate(0, 0);
   }
   100% {
-    background-color: #1f253d;
+    background-color: #04724d;
     transform: translate(35%, -20px);
   }
 }
 
 @keyframes hideLogin {
   0% {
-    background-color: #1f253d;
+    background-color: #04724d;
     transform: translate(35%, -20px);
   }
   50% {
     transform: translate(0, 0);
   }
   100% {
-    background: #1f253d;
+    background: #04724d;
     transform: translate(40%, 10px);
   }
 }
@@ -170,28 +170,28 @@
 
 @keyframes showSignup {
   0% {
-    background: #1f253d;
+    background: #04724d;
     transform: translate(-40%, 10px) scaleY(0.8);
   }
   50% {
     transform: translate(0, 0) scaleY(0.8);
   }
   100% {
-    background-color: #1f253d;
+    background-color: #04724d;
     transform: translate(-35%, -20px) scaleY(1);
   }
 }
 
 @keyframes hideSignup {
   0% {
-    background-color: #1f253d;
+    background-color: #04724d;
     transform: translate(-35%, -20px) scaleY(1);
   }
   50% {
     transform: translate(0, 0) scaleY(0.8);
   }
   100% {
-    background: #1f253d;
+    background: #04724d;
     transform: translate(-40%, 10px) scaleY(0.8);
   }
 }
@@ -269,15 +269,14 @@
 }
 
 .btn-login {
-  color: #fbfdff;
-  background: #13a7ab;
+  color: #000;
+  background: #fff;
   transform: translateX(-30%);
 }
 
 .btn-signup {
-  color: #fff;
-  background: #13a7ab;
-
+  color: #000;
+  background: #fff;
   transform: translateX(30%);
 }
 button:disabled,
