@@ -29,9 +29,9 @@ const ChatCard = (props: ChatProps) => {
   }, [dialog]);
   return (
     <div
-      className={`flex   border 
+      className={`flex border 
       w-full
-      justify-start items-center rounded cursor-pointer hover:bg-[#0B3142] hover:border-[#0B3142] transition-all 
+      justify-start items-center cursor-pointer hover:bg-[#0B3142] hover:border-[#0B3142] transition-all 
       ${props.uid === props.chatId ? 'bg-[#0B3142]' : ''}
       `}
       onClick={() => handleSelectUser(auth.currentUser!.uid, props.uid!)}

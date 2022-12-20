@@ -147,7 +147,7 @@ export const handleDeleteMessage = async (
 };
 
 export const HandleThemeChange = () => {
-  const [isLight, setIsLight] = useState(true);
+  const [isLight, setIsLight] = useState(false);
   return {
     isLight,
     setIsLight,

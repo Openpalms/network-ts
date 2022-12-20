@@ -25,9 +25,9 @@ const LoginForm = () => {
   } = LogUserIn();
 
   return (
-    <section className="forms-section">
+    <section className="forms-section ">
       <div className="forms">
-        <div className={`form-wrapper ${isActive && 'is-active'}`}>
+        <div className={`form-wrapper ${isActive && 'is-active'} `}>
           <button
             type="button"
             className="switcher switcher-login border"
@@ -36,7 +36,7 @@ const LoginForm = () => {
             Login
             <span className="underline"></span>
           </button>
-          <form className={`${loginError ? 'formError' : 'form'} form-login`}>
+          <form className={`${loginError ? 'formError' : 'form'} form-login `}>
             <fieldset>
               <div className="input-block">
                 <label htmlFor="login-email">E-mail</label>
@@ -69,7 +69,7 @@ const LoginForm = () => {
             </button>
           </form>
         </div>
-        <div className={`form-wrapper ${!isActive && 'is-active'}`}>
+        <div className={`form-wrapper ${!isActive && 'is-active'} `}>
           <button
             type="button"
             className="switcher switcher-signup"
@@ -78,7 +78,7 @@ const LoginForm = () => {
             Sign Up
             <span className="underline"></span>
           </button>
-          <form className={`${error ? 'formError' : 'form'} form-signup`}>
+          <form className={`${error ? 'formError' : 'form'} form-signup `}>
             <fieldset>
               <div className="input-block">
                 <label htmlFor="signup-email">E-mail</label>

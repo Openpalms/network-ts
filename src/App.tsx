@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
@@ -13,12 +13,15 @@ import Messenger from './pages/Messenger';
 function App() {
   const { currentUser } = IsUserLogged();
 
+  /// checking if logined and returns component
   const ProtectedRoute = ({ children }: any) => {
     if (!currentUser) {
       return <Navigate to={'/login'} />;
     }
     return <>{children}</>;
   };
+
+  ///the only available route if user not logged in
   const LoginRoute = ({ children }: any) => {
     if (currentUser) {
       return <Navigate to={`/${currentUser.uid}`} />;
@@ -26,11 +29,11 @@ function App() {
     return <>{children}</>;
   };
   return (
-    <div className=" grid grid-cols-[0.5fr,1fr,0.5fr] grid-rows-[100px,1fr] gap-6 ">
+    <div className=" grid grid-cols-[0.5fr,1fr,0.5fr] grid-rows-[100px,1fr] gap-6 max-[600px]:flex max-[600px]:flex-col">
       <div className="col-span-3 h-[50%]">
         <Navbar />
       </div>
-      <div className="col-start-1 ml-5">
+      <div className="col-start-1 ml-5 max-[600px]:hidden">
         <Sidebar />
       </div>
       <div className=" col-start-2 col-end-4 row-start-2 w-[100%]">

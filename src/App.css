@@ -93,7 +93,11 @@
   background-color: #04724d;
   transition: transform 0.2s ease-out;
 }
-
+@media screen and (max-width: 600px) {
+  .underline::before {
+    transition: none;
+  }
+}
 .switcher-login .underline::before {
   transform: translateX(101%);
 }
