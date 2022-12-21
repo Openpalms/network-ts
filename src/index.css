@@ -5,7 +5,7 @@
 @tailwind utilities;
 body {
   margin: 0;
-  font-family: 'Montserrat', 'Roboto', 'Oswald', sans-serif;
+  font-family: 'Montserrat', 'Roboto', sans-serif;
   background-color: #f4f4f9;
   box-sizing: border-box;
 }
