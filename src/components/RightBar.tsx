@@ -33,7 +33,7 @@ const RightBar = () => {
   }, [uid]);
 
   return (
-    <div className=" bg-[#F4F4F9] w-[100%] h-[500px] flex flex-col items-center text-white border m-5 rounded-md max-[600px]:m-0 p-2">
+    <div className=" bg-[#F4F4F9] w-[100%] h-[500px] flex flex-col items-center text-white border  rounded-md m-0  xl:m-5  ">
       <div className=" w-[100%] h-[10%] mb-2  rounded-t-md text-center uppercase border-b text-[#04724D]">
         feed
       </div>

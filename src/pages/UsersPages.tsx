@@ -1,6 +1,6 @@
 import search from '../assets/images/search.gif';
 import UserCard from '../components/UserCard';
-import scroll from '../assets/images/scroll.gif';
+import loader from '../assets/images/loader.svg';
 import { useState, useEffect } from 'react';
 import { onValue, ref } from 'firebase/database';
 import { bd } from '../api/config';
@@ -9,6 +9,7 @@ import { auth } from '../api/config';
 import Pagination from '../components/Pagination';
 const UserPages = () => {
   const [query, setQuery] = useState('');
+  const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState([] as any);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 3;
@@ -16,12 +17,14 @@ const UserPages = () => {
   const firstUserIndex = lastUserIndex - usersPerPage;
 
   useEffect(() => {
+    setLoading(true);
     const starCountRef = ref(bd);
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       if (data !== null) {
         const dataToArray = Object.assign([], Object.values(data));
         setUsers(dataToArray);
+        setLoading(false);
       }
     });
   }, []);
@@ -29,6 +32,13 @@ const UserPages = () => {
   const currentUsers = users.slice(firstUserIndex, lastUserIndex);
   return (
     <div className="flex  w-[100%] h-[100%] bg-[#04724D]  rounded-xl flex-col overflow-y-scroll ">
+      {loading && (
+        <img
+          src={loader}
+          alt="loading"
+          className="h-[50%] w-[50%] self-center"
+        />
+      )}
       <div className="m-5 ">
         <label className="relative block">
           <span className="sr-only">Search</span>
@@ -55,7 +65,7 @@ const UserPages = () => {
             currentPage={currentPage}
           />
         </div>
-        <div className=" flex flex-col md:flex-row justify-center items-center w-full">
+        <div className=" flex flex-col xl:flex-row justify-center items-center w-full">
           {currentUsers &&
             currentUsers
               .filter(

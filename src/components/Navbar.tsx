@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <>
       <div className="flex items-center justify-between h-[50px] bg-[#04724D] shadow  text-white 2xl:h-[75px] ">
-        <div className="pl-5 uppercase text-[#fff] max-[600px]:hidden">
+        <div className="pl-5 uppercase text-[#fff] hidden md:flex w-[50vw]">
           <NavbarTyping />
         </div>
         <div className="w-[50%] h-[100%] flex justify-around items-end pt-3 text-center font-bold transition-all max-[600px]:justify-center max-[600px]:w-full">

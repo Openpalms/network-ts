@@ -16,15 +16,22 @@ function SignUpMobile() {
   return (
     <>
       <form
-        className="border w-[70%] h-[70vh]
-      my-20 mx-auto rounded-xl bg-[#04724D] "
+        className={`border-4 w-[70%] h-[75vh]
+          my-20 mx-auto rounded-xl bg-[#04724D] 
+          ${error && '  border-red-500'}`}
       >
-        <p className="text-white uppercase text-center mt-2">Sign Up</p>
+        {error ? (
+          <p className="lowercase text-center text-white text-sm">{error}</p>
+        ) : (
+          <p className="text-white uppercase text-center mt-2">Sign Up</p>
+        )}
+
         <div
-          className="flex flex-col justify-around
+          className="flex flex-col 
+          justify-between
         h-[90%] text-white uppercase"
         >
-          <label htmlFor="" className="mt-5 mx-2">
+          <label htmlFor="" className="mt-3 mx-2">
             E-mail
           </label>
           <input
@@ -35,7 +42,7 @@ function SignUpMobile() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label htmlFor="" className="mt-5 mx-2">
+          <label htmlFor="" className=" mx-2">
             Fullname
           </label>
           <input
@@ -46,7 +53,7 @@ function SignUpMobile() {
             onChange={(e) => setAuthName(e.target.value)}
             placeholder="John Smith"
           />
-          <label htmlFor="" className="mt-5 mx-2">
+          <label htmlFor="" className=" mx-2">
             Age
           </label>
           <input
@@ -57,7 +64,7 @@ function SignUpMobile() {
             value={authAge}
             onChange={(e) => setAuthAge(e.target.value)}
           />
-          <label htmlFor="" className="mt-5 mx-2">
+          <label htmlFor="" className=" mx-2">
             password
           </label>
           <input

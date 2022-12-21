@@ -10,6 +10,7 @@ export interface ChatProps extends IUser {
 }
 export interface ChatIdProps {
   id: string;
+  setId?: (arg: string) => void;
 }
 export interface PaginationProps {
   totalUsers: number;

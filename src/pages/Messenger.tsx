@@ -25,8 +25,13 @@ function Messenger() {
   }, []);
 
   return (
-    <div className="flex relative w-full h-[100%] bg-[#04724D]  rounded-xl  overflow-y-scroll ">
-      <div className="border-r w-[100%] h-[30rem] overflow-x-scroll flex flex-col 2xl:h-[50rem]">
+    <div className="flex relative w-full h-[100%] bg-[#04724D]  rounded-xl  md:overflow-y-scroll ">
+      <div
+        className={`border-r w-[100%] h-[100%] md:h-[30rem] md:overflow-x-scroll flex flex-col 2xl:h-[50rem] 
+
+      ${chatId && 'hidden md:flex'}
+      `}
+      >
         {users.map((follower: IUser) => (
           <div
             className=""
@@ -37,7 +42,12 @@ function Messenger() {
           </div>
         ))}
       </div>
-      <div className=" w-[70%] h-[80vh] flex">
+      <div
+        className={`${chatId && 'flex w-full h-[80vh] md:hidden'} md:hidden `}
+      >
+        {chatId && <Chat id={chatId} setId={setId} />}
+      </div>
+      <div className=" hidden w-[70%] h-[80vh] md:flex ">
         {/* Chat will be displayed here by clicking on user icons  */}
         {chatId && <Chat id={chatId} />}
         {!chatId && (

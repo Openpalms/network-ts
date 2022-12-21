@@ -5,6 +5,7 @@ import { IUser } from '../Types/User';
 import { useNavigate, useParams } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
 import RightBar from '../components/RightBar';
+import loader from '../assets/images/loader.svg';
 
 const MainPage = () => {
   const { id } = useParams();
@@ -17,14 +18,19 @@ const MainPage = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const dbRef = ref(bd, uid);
     onValue(dbRef, (snapshot) => {
       const data = snapshot.val();
-
       if (data !== null) {
         setUser(data);
+        setLoading(false);
+      }
+      if (data === null) {
+        setLoading(false);
       }
     });
   }, [uid]);
@@ -60,7 +66,14 @@ const MainPage = () => {
     'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <>
-      <div className="  bg-[#04724D]  rounded-xl flex justify-around max-[600px]:flex-col ">
+      <div className="  bg-[#04724D]  rounded-xl flex justify-around flex-col xl:flex-row ">
+        {loading && (
+          <img
+            src={loader}
+            alt="loading"
+            className="h-[50%] w-[50%] self-center"
+          />
+        )}
         <div className="flex flex-col justify-start w-fit m-10 ml-16  text-white">
           <p className="font-bold text-2xl text-center">
             {user && user.fullname}, {user && user.age}
@@ -88,7 +101,9 @@ const MainPage = () => {
               className={`uppercase mr-1 p-2 bg-[#13a7ab] rounded ${
                 id === auth.currentUser?.uid ? 'hidden' : ''
               }`}
-              onClick={() => navigate('/messages')}
+              onClick={() => {
+                navigate('/messages');
+              }}
             >
               message
             </button>

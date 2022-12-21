@@ -12,12 +12,20 @@ function LoginMobile() {
   return (
     <>
       <form
-        className="border w-[70%] h-[50vh]
-      my-20 mx-auto rounded-xl bg-[#04724D] "
+        className={`border-4 w-[70%] h-[55vh]
+      my-20 mx-auto rounded-xl bg-[#04724D] 
+      ${loginError && '  border-red-500'}`}
       >
-        <p className="text-white uppercase text-center mt-2">login</p>
+        {loginError ? (
+          <p className="lowercase text-center text-white text-sm">
+            {loginError}
+          </p>
+        ) : (
+          <p className="text-white uppercase text-center mb-2">login</p>
+        )}
+
         <div
-          className="flex flex-col justify-around
+          className="flex flex-col justify-start
         h-[90%] text-white uppercase"
         >
           <label htmlFor="" className="mt-5 mx-2">
@@ -44,7 +52,7 @@ function LoginMobile() {
           />
 
           <button
-            className="w-[30%] self-center border"
+            className="w-[30%] self-center border mt-5"
             onClick={(e) => SubmitLoginForm(e, loginEmail, loginPassword)}
           >
             login

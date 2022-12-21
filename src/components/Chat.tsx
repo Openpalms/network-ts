@@ -7,7 +7,7 @@ import { IMessage } from '../Types/Message';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { ChatIdProps } from '../Types/Props';
 
-function Chat({ id }: ChatIdProps) {
+function Chat({ id, setId }: ChatIdProps) {
   const [message, setMessage] = useState('');
   const [dialog, setDialog] = useState<IMessage[]>([]);
   const [chatId, setChatId] = useState('');
@@ -32,6 +32,12 @@ function Chat({ id }: ChatIdProps) {
   return (
     <>
       <div className="flex flex-col w-full h-[80vh]  justify-end bg-[#B8DBD9]">
+        <p
+          className="absolute top-0 z-10 cursor-pointer md:hidden"
+          onClick={() => setId!('')}
+        >
+          ←
+        </p>
         <div className="flex flex-col overflow-scroll mb-5 ">
           {dialog.map((m) => (
             <Message
@@ -52,7 +58,7 @@ function Chat({ id }: ChatIdProps) {
         </div>
         <div className="flex">
           <input
-            className="h-[85px] w-[55vw] p-2 justify-self-end self-center outline-none"
+            className="h-[85px]  w-full md:w-[55vw] p-2 justify-self-end self-center outline-none"
             onChange={(e) => setMessage(e.target.value)}
             value={message}
             onKeyDown={(e) => {
@@ -62,7 +68,7 @@ function Chat({ id }: ChatIdProps) {
             }}
           />
           <button
-            className="border bg-[#04724D] h-full w-[100px] uppercase outline-none hover:bg-white transition-all text-white
+            className="border bg-[#04724D] h-full w-[33%] md:w-[100px]  uppercase outline-none hover:bg-white transition-all text-white
             hover:text-black"
             onClick={() => {
               handleMessageSent(auth.currentUser!.uid, id, message);
