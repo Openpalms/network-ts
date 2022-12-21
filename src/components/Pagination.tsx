@@ -1,4 +1,3 @@
-import React from 'react';
 import { PaginationProps } from '../Types/Props';
 
 function Pagination(props: PaginationProps) {

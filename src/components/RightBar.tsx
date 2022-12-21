@@ -19,7 +19,9 @@ const RightBar = () => {
     onValue(postref, (snapshot) => {
       const dbPosts = snapshot.val();
       if (dbPosts !== null) {
+        /// transform object to array
         const formatedData = Object.assign([], Object.values(dbPosts));
+        /// sort by date of creation
         const ordered = _.orderBy(
           formatedData,
           function (item: IPost) {

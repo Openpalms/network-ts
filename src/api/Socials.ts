@@ -8,7 +8,6 @@ import {
   arrayUnion,
   doc,
   getDoc,
-  onSnapshot,
   setDoc,
   Timestamp,
   updateDoc,
@@ -94,8 +93,6 @@ export const handleMessageSent = async (
     const docRef = doc(FirestoreDB, 'chats', combinedId);
     const res = await getDoc(docRef);
     if (!res.exists()) {
-      const docRef = doc(FirestoreDB, 'chats', reversedId);
-      const res = await getDoc(docRef);
       await updateDoc(doc(FirestoreDB, 'chats', reversedId), {
         messages: arrayUnion({
           id: nanoid(),
