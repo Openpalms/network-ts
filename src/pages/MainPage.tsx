@@ -65,7 +65,7 @@ const MainPage = () => {
 
   return (
     <>
-      <div className="  bg-[#04724D]  rounded-xl flex justify-around flex-col xl:flex-row ">
+      <div className="  bg-[#04724D]  rounded-xl flex justify-around flex-col xl:flex-row  ">
         {loading && (
           <img
             src={loader}
@@ -73,13 +73,13 @@ const MainPage = () => {
             className="h-[50%] w-[50%] self-center"
           />
         )}
-        <div className="flex flex-col justify-start w-fit m-10 ml-16  text-white">
+        <div className="flex flex-col justify-start w-fit m-10 text-white self-center ">
           <p className="font-bold text-2xl text-center">
             {user && user.fullname}, {user && user.age}
           </p>
           <img
             src={user.url || defaultImage}
-            className="w-[170px] h-40 rounded-md"
+            className="w-[170px] h-40 rounded-md self-center"
             alt="avatar"
           />
           <p className="text-center">

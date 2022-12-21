@@ -52,6 +52,14 @@ function App() {
             }
           />
           <Route
+            path="/*"
+            element={
+              <LoginRoute>
+                <LoginPage />
+              </LoginRoute>
+            }
+          />
+          <Route
             path="/settings"
             element={
               <ProtectedRoute>

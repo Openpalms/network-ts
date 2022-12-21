@@ -7,6 +7,8 @@ import { IMessage } from '../Types/Message';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { ChatIdProps } from '../Types/Props';
 import loader from '../assets/images/loader.svg';
+import arrowBack from '../assets/images/arrowBack.svg';
+
 function Chat({ id, setId }: ChatIdProps) {
   const [message, setMessage] = useState('');
   const [dialog, setDialog] = useState<IMessage[]>([]);
@@ -41,7 +43,7 @@ function Chat({ id, setId }: ChatIdProps) {
           className="absolute top-0 z-10 cursor-pointer md:hidden"
           onClick={() => setId!('')}
         >
-          ←
+          <img src={arrowBack} alt="go_back" className="h-14 " />
         </p>
         <div className="flex flex-col overflow-scroll mb-5 ">
           {loading && (

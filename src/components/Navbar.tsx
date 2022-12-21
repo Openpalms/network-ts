@@ -63,17 +63,17 @@ const Navbar = () => {
       ${!drop && 'hidden'}
       `}
       >
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full mt-2   ">
           <Link to={'/settings'} onClick={closeDrop}>
             settings
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full mt-2">
           <Link to={'/users'} onClick={closeDrop}>
             users
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full">
+        <li className="border-b-2 border-zinc-300 w-full mb-5 mt-2 ">
           <Link to={'/messages'} onClick={closeDrop}>
             messages
           </Link>
