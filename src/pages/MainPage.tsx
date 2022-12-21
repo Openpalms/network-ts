@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
 import RightBar from '../components/RightBar';
 import loader from '../assets/images/loader.svg';
+import defaultImage from '../assets/images/defaultImage.webp';
 
 const MainPage = () => {
   const { id } = useParams();
@@ -62,8 +63,6 @@ const MainPage = () => {
     HandleUserActions.setUnfollow(auth.currentUser?.uid, id);
   };
 
-  const stockPhoto =
-    'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <>
       <div className="  bg-[#04724D]  rounded-xl flex justify-around flex-col xl:flex-row ">
@@ -79,7 +78,7 @@ const MainPage = () => {
             {user && user.fullname}, {user && user.age}
           </p>
           <img
-            src={user.url || stockPhoto}
+            src={user.url || defaultImage}
             className="w-[170px] h-40 rounded-md"
             alt="avatar"
           />

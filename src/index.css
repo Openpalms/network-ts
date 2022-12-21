@@ -15,3 +15,7 @@ html {
   width: 100vw;
   height: 100vh;
 }
+#pre-loader {
+  width: 90vw;
+  margin: 100px auto;
+}

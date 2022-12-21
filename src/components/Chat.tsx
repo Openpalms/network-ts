@@ -6,26 +6,31 @@ import { FirestoreDB } from '../api/config';
 import { IMessage } from '../Types/Message';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { ChatIdProps } from '../Types/Props';
-
+import loader from '../assets/images/loader.svg';
 function Chat({ id, setId }: ChatIdProps) {
   const [message, setMessage] = useState('');
   const [dialog, setDialog] = useState<IMessage[]>([]);
   const [chatId, setChatId] = useState('');
+  const [loading, setLoading] = useState(false);
   const combinedId = auth.currentUser!.uid + id;
   const reversedId = id + auth.currentUser!.uid;
   useEffect(() => {
+    setLoading(true);
     ///checking if dialog is in db with reversedID
     const unSub = onSnapshot(doc(FirestoreDB, 'chats', reversedId), (doc) => {
       doc.exists() && setDialog(doc.data().messages);
       doc.exists() && setChatId(reversedId);
+      setLoading(false);
     });
     ///if dialog is not reversedId then it's straight forward id
     const unSubId = onSnapshot(doc(FirestoreDB, 'chats', combinedId), (doc) => {
       doc.exists() && setDialog(doc.data().messages);
       doc.exists() && setChatId(combinedId);
+      setLoading(false);
     });
     return () => {
       unSub();
+      unSubId();
     };
   }, [reversedId, combinedId]);
 
@@ -39,6 +44,13 @@ function Chat({ id, setId }: ChatIdProps) {
           ←
         </p>
         <div className="flex flex-col overflow-scroll mb-5 ">
+          {loading && (
+            <img
+              src={loader}
+              alt="loading"
+              className="h-[50%] w-[50%] self-center"
+            />
+          )}
           {dialog.map((m) => (
             <Message
               text={m.text}

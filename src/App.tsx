@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
@@ -28,6 +28,7 @@ function App() {
     }
     return <>{children}</>;
   };
+
   return (
     <div className=" grid grid-cols-[0.5fr,1fr,0.5fr] grid-rows-[100px,1fr] gap-6 max-[600px]:flex max-[600px]:flex-col">
       <div className="col-span-3 h-[50%]">

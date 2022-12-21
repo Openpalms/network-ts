@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HandleUserActions } from '../api/Socials';
 import { auth } from '../api/config';
@@ -7,6 +7,9 @@ import menu from '../assets/images/burgerMenu.svg';
 import exit from '../assets/images/exit.svg';
 const Navbar = () => {
   const [drop, setdrop] = useState(false);
+  const closeDrop = () => {
+    setdrop(false);
+  };
   return (
     <>
       <div className="flex items-center justify-between h-[50px] bg-[#04724D] shadow  text-white 2xl:h-[75px] ">
@@ -61,13 +64,19 @@ const Navbar = () => {
       `}
       >
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link to={'/settings'}>settings</Link>
+          <Link to={'/settings'} onClick={closeDrop}>
+            settings
+          </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link to={'/users'}>users</Link>
+          <Link to={'/users'} onClick={closeDrop}>
+            users
+          </Link>
         </li>
         <li className="border-b-2 border-zinc-300 w-full">
-          <Link to={'/messages'}>messages</Link>
+          <Link to={'/messages'} onClick={closeDrop}>
+            messages
+          </Link>
         </li>
       </ul>
     </>

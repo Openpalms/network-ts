@@ -1,13 +1,12 @@
 import { IUser } from '../Types/User';
 import { NavLink } from 'react-router-dom';
+import defaultImage from '../assets/images/defaultImage.webp';
 const UserCard = (props: IUser) => {
-  const stockPhoto =
-    'https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000';
   return (
     <NavLink to={'/' + props.uid}>
       <div className="flex flex-col my-5 mx-5 border-black items-center rounded bg-[#F4F4F9]  ">
         <img
-          src={props.url || stockPhoto}
+          src={props.url || defaultImage}
           alt="avatar"
           className="h-48 w-48 m-2 rounded"
         />
